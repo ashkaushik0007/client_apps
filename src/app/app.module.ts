@@ -13,7 +13,15 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
+import { AppConfig } from './app.config';
+
+import {APP_BASE_HREF} from '@angular/common';
+
 import { HomeModule } from './home/home.module';
+import { AuthGuard } from './guards/index';
+import { AlertService, AuthenticationService, UserService} from './services/index';
+import { AlertComponent } from './directives/index';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,9 @@ import { HomeModule } from './home/home.module';
     LandingComponent,
     ProfileComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +42,14 @@ import { HomeModule } from './home/home.module';
     AppRoutingModule,
     HomeModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService,
+    AppConfig,
+    {provide: APP_BASE_HREF, useValue : '/'} 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

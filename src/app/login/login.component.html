@@ -1,0 +1,57 @@
+<!-- <section class="hero-back">
+  <div class="col-md-4 col-md-offset-4 login-area">
+      <h3 class='text-center'>Login to your account</h3>
+      <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile.valid }">
+              <label for="mobile">Mobile Number</label>
+              <input type="text" class="form-control" name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel" required />
+              <div *ngIf="f.submitted && !mobile.valid" class="help-block">Mobile Number is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          </div>
+          <div class="form-group text-center">
+              <button [disabled]="loading" class="btn btn-danger btn-block">Login</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          </div>
+      </form>
+  </div>
+  </section> -->
+
+  <div class="wrapper">
+    <div class="filter"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                    <div class="card card-register">
+                        <h3 class="title">Welcome to ProApps</h3>
+                        <!-- <div class="social-line text-center">
+                            <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div> -->
+                        <form class="register-form">
+                            <label>Email</label>
+                            <input type="text" class="form-control" placeholder="Email">
+
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Password">
+
+                            <button class="btn btn-danger btn-block btn-round"> <i class="fa fa-circle-o-notch fa-spin"></i> Login</button>
+                        </form>
+                        <div class="forgot">
+                            <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
