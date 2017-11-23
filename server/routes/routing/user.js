@@ -1,8 +1,8 @@
 var config = require('config.json');
 var express = require('express');
 var router = express.Router();
-var userService = require('services/user.service');
-var userService = require('services/user.service');
+var userService = require('./../../services/user.service');
+var userService = require('./../../services/user.service');
  
 // routes
 router.put('/', test);
@@ -15,6 +15,12 @@ router.delete('/:_id', _delete);
 router.post('/verify',verifyUser);
  
 module.exports = router;
+
+function test(req, res) {
+   
+    res.status(200).send('Mobile number or password is incorrect');
+         
+}
  
 function authenticate(req, res) {
     userService.authenticate(req.body.mobile, req.body.password,req.body.role)
