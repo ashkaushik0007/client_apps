@@ -10,26 +10,17 @@ import { AppConfig } from '../../app.config';
 export class AuthenticationService {
     constructor(private http: Http, private config: AppConfig) { }
  
-    login(name: string, password: string) {
-        return this.http.post(this.config.apiUrl + '/user/login?_format=json', { name: name, pass: password})
-         .map((response: Response) => {
+    login(email: string, password: string) {
+        return this.http.post(this.config.apiUrl + '/user/authenticate', { email: email, password: password })
+            .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                if (user) {
+                if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
             });
     }
-
-    // private helper methods 
-    // private requestHeaders() {
-    //     // create authorization header token
-    //     let headers = new Headers({ 'content-type': 'application/json' });
-    //         headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    //         headers.append('Access-Control-Allow-Headers','Content-Type');
-    //     return new RequestOptions({ headers: headers });
-    // }
  
     logout() {
         // remove user from local storage to log user out

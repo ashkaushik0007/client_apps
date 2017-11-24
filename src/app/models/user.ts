@@ -7,6 +7,11 @@ export interface User {
     userName: String;
     emailVerified:boolean;
     phoneVerified:boolean;
+    name: string;
+    account: {
+      email: string;
+      confirm: string;
+    }
     role?: { 
             name?:String;
             invitedBy?:string;

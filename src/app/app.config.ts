@@ -1,3 +1,3 @@
 export class AppConfig {
-    public readonly apiUrl = 'http://localhost/supplierhub/drupal';
+    public readonly apiUrl = 'http://localhost:8080/api';
 };
