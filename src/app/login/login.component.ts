@@ -25,27 +25,27 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService) { }
 
     ngOnInit() {
+      // reset login status
+      this.authenticationService.logout();      
+
       this.user = new FormGroup({
-        name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        account: new FormGroup({
-          email: new FormControl('', [
-            Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
-          ]),
-          confirm: new FormControl('', [
-            Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
-          ])
-        })
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern("[^ @]*@[^ @]*")
+        ]),
+        password: new FormControl('', Validators.required)
       });
     }
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
      this.loading = true;
      if(valid){
-        this.authenticationService.login(value.email, value.email)
+        this.authenticationService.login(value.email, value.password)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    //this.router.navigate([this.returnUrl]);
+                    this.loading = false;
+                    this.alertService.success('Loggined Successfull', true);
+                    this.router.navigate(['/dashboard']);
                 },
                 error => {
                     this.alertService.error(error._body);

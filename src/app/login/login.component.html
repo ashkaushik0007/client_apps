@@ -1,67 +1,44 @@
-<!-- <section class="hero-back">
-  <div class="col-md-4 col-md-offset-4 login-area">
-      <h3 class='text-center'>Login to your account</h3>
-      <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile.valid }">
-              <label for="mobile">Mobile Number
-              <input type="text" class="form-control" name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel" required />
-              <div *ngIf="f.submitted && !mobile.valid" class="help-block">Mobile Number is required</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-              <label for="password">Password
-              <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-          </div>
-          <div class="form-group text-center">
-              <button [disabled]="loading" class="btn btn-danger btn-block">Login</button>
-              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-          </div>
-      </form>
-  </div>
-  </section> -->
-
-  <div class="wrapper">
+<div class="wrapper">
+    <div class="container"><app-alert></app-alert></div>
     <div class="filter"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
-                    <div class="card card-register">
-                        <h3 class="title">Welcome to ProApps</h3>
-                        <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user" class="register-form">
-                            <label>Full name</label>
-                              <input type="text" class="form-control" placeholder="Your full name" formControlName="name">
-                           
-                            <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
-                              Name is required
-                            </div>
-                            <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
-                              Minimum of 2 characters
-                            </div>
-                            <div formGroupName="account">
-                              
-                                <label>Email address</label>
-                                <input type="email"  class="form-control" placeholder="Your email address" formControlName="email">
-                              
-                              <div class="error" *ngIf="user.get('account').get('email').hasError('required') && user.get('account').get('email').touched">
-                                Email is required
-                              </div>
-                              
-                                <label>Confirm email</label>
-                                <input type="email" class="form-control" placeholder="Confirm your email address" formControlName="confirm">
-                              
-                              <div class="error"  *ngIf="user.get('account').get('confirm').hasError('required') && user.get('account').get('confirm').touched">
-                                Confirming email is required
-                              </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mr-auto ml-auto h-100 align-items-center">
+                <h3 class="title text-center">Welcome to ProApps</h3>
+                <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user" class="register-form">
+                    <div class="form-group">
 
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-block btn-round" [disabled]="user.invalid"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i>Sign up</button>
-                          </form>
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="Enter Email" formControlName="email">
 
-                        <div class="forgot">
-                            <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                        <div class="error" *ngIf="user.get('email').touched && user.get('email').hasError('required')">
+                            Email is required
+                        </div>
+                        <div class="error" *ngIf="user.get('email').touched && user.get('email').hasError('pattern')">
+                            Enter valid email
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
+
+                        <div class="error" *ngIf="user.get('password').touched && user.get('password').hasError('required')">
+                            Password is required
+                        </div>
+                        <div class="error" *ngIf="user.get('password').touched && user.get('password').hasError('minlength')">
+                            Minimum of 2 characters
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-danger btn-block btn-round" [disabled]="user.invalid">
+                            <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i>Sign up</button>
+                    </div>
+                </form>
+                <!-- <div class="forgot text-center">
+                    <a href="#" class="">Forgot password?</a>
+                </div> -->
             </div>
         </div>
+    </div>
 </div>

@@ -1,0 +1,55 @@
+<!-- Page Header-->
+<header class="page-header">
+    <div class="container-fluid">
+        <h2 class="no-margin-bottom">Manage Companies</h2>
+    </div>
+</header>
+
+<div class="statistic d-flex justify-content-around proapp-padding">
+    <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+        <div class="icon bg-red">
+            <i class="fa fa-building-o" aria-hidden="true"></i>
+        </div>
+        <div class="text">
+            <small>Add New</small>
+            <br>
+            <strong>Company</strong>
+        </div>
+    </div>
+    <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+        <div class="icon bg-red">
+            <i class="fa fa-building-o" aria-hidden="true"></i>
+        </div>
+        <div class="text">
+            <small>Edit</small>
+            <br>
+            <strong>Company</strong>
+        </div>
+    </div>
+    <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+        <div class="icon bg-red">
+            <i class="fa fa-building-o" aria-hidden="true"></i>
+        </div>
+        <div class="text">
+            <small>Delete</small>
+            <br>
+            <strong>Company</strong>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loading">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="mx-auto proapp-padding" *ngIf="loading">
+        <div class="form-group pull-right proapp-padding">
+            <a  [routerLink]="['/dashboard', {outlets: {page: ['addcompany']}}]" class="btn btn-primary btn-block btn-round">Add New Company</a>
+        </div>
+    <div class="bg-white proapp-table-border table-responsive">
+            <ng2-smart-table class='form-control' [settings]="settings" [source]="source"  (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+            (createConfirm)="onCreateConfirm($event)"  ></ng2-smart-table> 
+    </div>
+</div>

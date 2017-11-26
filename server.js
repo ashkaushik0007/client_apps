@@ -4,11 +4,12 @@ http = require('http'),
 path = require('path'),
 bodyParser = require('body-parser'),
 expressJwt = require('express-jwt'),
-cors = require('cors'),
-config = require('config.json');
+cors = require('cors');
 
 // Get our API routes
 const api = require('./server/routes/api');
+const user = require('./server/routes/user/user');
+const company = require('./server/routes/company/company');
 
 const app = express();
 
@@ -21,11 +22,17 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
 app.use('/api', api);
+app.use('/api/user', user);
+app.use('/api/company', company);
 
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,     Content-Type");
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
 
 /**
  * Get port from environment and store in Express.

@@ -1,4 +1,4 @@
-var config = require('config.json');
+var config = require('../../config.json');
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -11,35 +11,40 @@ var service = {};
  
 service.authenticate = authenticate;
 // service.verify = verify;
-// service.getAll = getAll;
+service.getAll = getAll;
 // service.getById = getById;
-// service.create = create;
-// service.update = update;
-// service.delete = _delete;
+service.create = create;
+service.update = update;
+service.delete = _delete;
  
 module.exports = service;
  
-function authenticate(mobile, password, role) {
+function authenticate(email, password) {
     var deferred = Q.defer();
  
-    db.users.findOne({ mobile: mobile }, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-         if (user && bcrypt.compareSync(password, user.hash)) {
-           if(user.role.name == role.name){
-            // authentication successful
+    db.users.findOne({ email: email }, function (err, user) {
+        if (err) deferred.reject(err.email + ': ' + err.message);
+
+        if (user && bcrypt.compareSync(password, user.hash)) {
+           // authentication successful
             deferred.resolve({
                 _id: user._id,
-                mobile: user.mobile,
-                fullname: user.fullname,
-                role: user.role.name,
-                deviceid : user.deviceid,
-                token: jwt.sign({ sub: user._id }, config.secret)
+                name:user.name,
+                role: user.role,
+                surname: user.surname,
+                email: user.email,
+                address: user.address,
+                phone: user.phone,
+                whatsapp: user.whatsapp,
+                invitedBy: user.invitedBy,
+                assignedColor: user.assignedColor,
+                workingHour: user.workingHour,
+                vacation: user.vacation,
+                created: user.created,
+                updated: user.updated,                
+                token: jwt.sign({ sub: user._id }, config.secret),
             });
-           }
-           else { 
-                // authentication failed
-                deferred.resolve();
-           }
+           
         } else {
             // authentication failed
             deferred.resolve();
@@ -48,23 +53,59 @@ function authenticate(mobile, password, role) {
  
     return deferred.promise;
 }
+
+function create(userParam) {
+    var deferred = Q.defer();
  
-// function getAll() {
-//     var deferred = Q.defer();
+    // validation
+    db.users.findOne(
+        { email: userParam.email },
+        function (err, user) {
+            if (err) deferred.reject(err.email + ': ' + err.message);
  
-//     db.users.find().toArray(function (err, users) {
-//         if (err) deferred.reject(err.name + ': ' + err.message);
+            if (user) {
+                // email already exists
+                deferred.reject('Email "' + userParam.email + '" is already taken');
+            } else {
+                createUser();
+            }
+        });
  
-//         // return users (without hashed passwords)
-//         users = _.map(users, function (user) {
-//             return _.omit(user, 'hash');
-//         });
+    function createUser() {
+        // set user object to userParam without the cleartext password
+        var user = _.omit(userParam, 'password');
+
+        // add hashed password to user object
+        user.hash = bcrypt.hashSync(userParam.password, 10);
  
-//         deferred.resolve(users);
-//     });
+        db.users.insert(
+            user,
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
  
-//     return deferred.promise;
-// }
+                deferred.resolve();
+            });
+    }
+ 
+    return deferred.promise;
+}
+ 
+function getAll() {
+    var deferred = Q.defer();
+ 
+    db.users.find({role:'superuser'}).toArray(function (err, users) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+        // return users (without hashed passwords)
+        users = _.map(users, function (user) {
+            return _.omit(user, 'hash');
+        });
+ 
+        deferred.resolve(users);
+    });
+ 
+    return deferred.promise;
+}
  
 // function getById(_id) {
 //     var deferred = Q.defer();
@@ -84,154 +125,77 @@ function authenticate(mobile, password, role) {
 //     return deferred.promise;
 // }
 
-
-// function verify(userParam){
-//     var deferred = Q.defer();
-
-//     var country_code = "+91";
-//     var tophone = country_code + userParam.mobile;
-//     var dateFormat = require('dateformat');
-//     var now = Date();
-//     var day = dateFormat(now, "N");
-
-//     token = userParam.token;
-    
-//     var ok = passcode.hotp({
-//         secret: tophone + day,
-//         counter: 4530
-//     });
-
-    
-//     if(ok === token){
-//         createUser()
-//     }
-//     else{
-//         //Incorrect OTP
-//         deferred.reject('Please enter correct OTP');
-//     }
-
-//     function createUser() {       
-//         // set user object to userParam without the cleartext password
-//         var user = _.omit(userParam, 'password','token'); 
+function update(_id, userParam) {
+    var deferred = Q.defer();
  
-//         // add hashed password to user object
-//         user.hash = bcrypt.hashSync(userParam.password, 10);        
+    // validation
+    db.users.findById(_id, function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
  
-//         db.users.insert(
-//             user,
-//             function (err, doc) {
-//                 if (err) deferred.reject(err.name + ': ' + err.message); 
-//                 deferred.resolve();
-//             });
-//     }
-//     return deferred.promise;
-// }
-
-// function create(userParam) {
-//     var deferred = Q.defer();
-
-//     // validation
-//     db.users.findOne(
-//         { mobile: userParam.mobile },
-//         function (err, user) {
-//             if (err) deferred.reject(err.name + ': ' + err.message);
+        if (user.email !== userParam.email) {
+            // mobile has changed so check if the new mobile is already taken
+            db.users.findOne(
+                { email: userParam.email },
+                function (err, user) {
+                    if (err) deferred.reject(err.name + ': ' + err.message);
  
-//             if (user) {
-//                 // email already exists
-//                 deferred.reject('Mobile number "' + userParam.mobile + '" is already taken');
-//             } else { 
-//                 sendOtp();     
-//             }
-//         });
-
-//     function sendOtp(){
-//         var country_code = "+91";
-//         var tophone = country_code + userParam.mobile;
-
-//         var dateFormat = require('dateformat');
-//         var now = Date();
-//         var day = dateFormat(now, "N");
-//         var token = passcode.hotp({
-//             secret: tophone + day,
-//             counter: 4530
-//         });
-//         msgBody = "Welcome to OyeBoys, Your one time password is:";
-//         body = msgBody + token;
-
-//         smsService.sendSms(tophone,body)
-//         .then(function () {
-//             deferred.resolve();
-//         })
-//         .catch(function (err) {
-//             deferred.reject(err)
-//         });        
-//     }
-//     return deferred.promise;
-// }
+                    if (user) {
+                        // mobile already exists
+                        deferred.reject('Email "' + req.body.email + '" is already taken')
+                    } else {
+                        updateUser();
+                    }
+                });
+        } else {
+            updateUser();
+        }
+    });
  
-// function update(_id, userParam) {
-//     var deferred = Q.defer();
+    function updateUser() {
+        // fields to update
+        var set = {
+            name:userParam.name,
+            role: userParam.role,
+            surname: userParam.surname,
+            email: userParam.email,
+            address: userParam.address,
+            phone: userParam.phone,
+            whatsapp: userParam.whatsapp,
+            assignedColor: userParam.assignedColor,
+            workingHour: userParam.workingHour,
+            vacation: userParam.vacation,
+            updated: userParam.updated,                
+        };
  
-//     // validation
-//     db.users.findById(_id, function (err, user) {
-//         if (err) deferred.reject(err.name + ': ' + err.message);
+        // update password if it was entered
+        if (userParam.password) {
+            set.hash = bcrypt.hashSync(userParam.password, 10);
+        }
  
-//         if (user.email !== userParam.email) {
-//             // mobile has changed so check if the new mobile is already taken
-//             db.users.findOne(
-//                 { email: userParam.email },
-//                 function (err, user) {
-//                     if (err) deferred.reject(err.name + ': ' + err.message);
+        db.users.update(
+            { _id: mongo.helper.toObjectID(_id) },
+            { $set: set },
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message); 
+                deferred.resolve();
+            });
+    }
  
-//                     if (user) {
-//                         // mobile already exists
-//                         deferred.reject('Mobile "' + req.body.email + '" is already taken')
-//                     } else {
-//                         updateUser();
-//                     }
-//                 });
-//         } else {
-//             updateUser();
-//         }
-//     });
- 
-//     function updateUser() {
-//         // fields to update
-//         var set = {
-//             firstName: userParam.firstName,
-//             lastName: userParam.lastName,
-//             mobile: userParam.mobile,
-//         };
- 
-//         // update password if it was entered
-//         if (userParam.password) {
-//             set.hash = bcrypt.hashSync(userParam.password, 10);
-//         }
- 
-//         db.users.update(
-//             { _id: mongo.helper.toObjectID(_id) },
-//             { $set: set },
-//             function (err, doc) {
-//                 if (err) deferred.reject(err.name + ': ' + err.message); 
-//                 deferred.resolve();
-//             });
-//     }
- 
-//     return deferred.promise;
-// }
+    return deferred.promise;
+}
 
 
  
-// function _delete(_id) {
-//     var deferred = Q.defer();
+function _delete(_id) {
+    var deferred = Q.defer();
  
-//     db.users.remove(
-//         { _id: mongo.helper.toObjectID(_id) },
-//         function (err) {
-//             if (err) deferred.reject(err.name + ': ' + err.message);
+    db.users.remove(
+        { _id: mongo.helper.toObjectID(_id) },
+        function (err) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
  
-//             deferred.resolve();
-//         });
+            deferred.resolve();
+        });
 
-//     return deferred.promise;
-// }
+    return deferred.promise;
+}

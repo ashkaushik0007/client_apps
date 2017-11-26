@@ -9,19 +9,23 @@ export class UserService {
     constructor(private http: Http, private config: AppConfig) { }
  
     getAll() {
-        return this.http.get(this.config.apiUrl + '/users/getAllUsers', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.config.apiUrl + '/user/getAllUsers', this.jwt()).map((response: Response) => response.json());
     }
  
     getById(_id: string) {
-        return this.http.get(this.config.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.config.apiUrl + '/user/' + _id, this.jwt()).map((response: Response) => response.json());
     }
  
     create(user: User) {
-        return this.http.post(this.config.apiUrl + '/users/register', user, this.jwt());
+        return this.http.post(this.config.apiUrl + '/user/register', user, this.jwt());
+    }
+
+    update(user: User) {
+        return this.http.put(this.config.apiUrl + '/user/update', user, this.jwt());
     }
   
     delete(_id: string) {
-        return this.http.delete(this.config.apiUrl + '/users/' + _id, this.jwt());
+        return this.http.delete(this.config.apiUrl + '/user/' + _id, this.jwt());
     }
  
     // private helper methods

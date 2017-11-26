@@ -1,0 +1,30 @@
+<!-- Sidebar Header-->
+<div class="sidebar-header d-flex align-items-center">
+       <div class="title">
+          <h1 class="h4">{{ currentUser.name }}  {{ currentUser.surname }}</h1>
+          <p>{{ currentUser.role }}</p>
+        </div>
+      </div>
+      <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+      <ul class="list-unstyled">
+        <li class="active"> <a [routerLink]="['/']"><i class="icon-home"></i>Home</a></li>
+        <!-- <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown </a>
+          <ul id="dashvariants" class="collapse list-unstyled">
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Page</a></li>
+          </ul>
+        </li> -->
+        <li> <a [routerLink]="['/dashboard', {outlets: {page: ['companies']}}]"><i class="fa fa-building-o" aria-hidden="true"></i>Manage Companies</a></li>
+        <li> <a [routerLink]="['/dashboard', {outlets: {page: ['manageuser']}}]"> <i class="icon-user"></i>Manage Users </a></li>
+        <li> <a [routerLink]="['/dashboard', {outlets: {page: ['managereports']}}]"> <i class="icon-padnote"></i>Manage Reports </a></li>
+        <li> <a [routerLink]="['/dashboard', {outlets: {page: ['manageinvoices']}}]"> <i class="icon-interface-windows"></i>Manage Invoices</a></li>
+      <!-- </ul><span class="heading">Extras</span>
+      <ul class="list-unstyled">
+        <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
+        <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
+        <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
+        <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+      </ul> -->
+    

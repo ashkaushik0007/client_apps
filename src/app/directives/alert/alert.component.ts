@@ -9,7 +9,9 @@ import { AlertService } from '../../services/alert/alert.service';
 export class AlertComponent {
   message: any;
 
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService) { 
+    
+  }
 
   ngOnInit() {
       this.alertService.getMessage().subscribe(message => { this.message = message; });
