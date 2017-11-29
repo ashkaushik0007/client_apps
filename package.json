@@ -13,8 +13,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server:prod": "node server.js",
-    "server:aot": "ng build --prod && node server.js"
+    "server:prod": "ng build --prod && node server.js",
+    "server": "node server.js"
   },
   "private": true,
   "dependencies": {
@@ -37,8 +37,9 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-jwt": "^5.3.0",
-    "jquery": "3.2.1",
+    "jquery": "^3.2.1",
     "jw-bootstrap-switch-ng2": "1.0.3",
+    "mdbootstrap": "^4.4.3",
     "mongodb": "^2.2.33",
     "mongoskin": "^2.1.0",
     "ng2-nouislider": "1.6.1",

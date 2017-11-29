@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
     <div class="container"><app-alert></app-alert></div>
     <div class="filter"></div>
     <div class="container">
@@ -34,10 +34,86 @@
                       <button type="submit" class="btn btn-danger btn-block btn-round" [disabled]="user.invalid">
                             <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i>Sign up</button>
                     </div>
-                </form>
-                <!-- <div class="forgot text-center">
+                </form> -->
+<!-- <div class="forgot text-center">
                     <a href="#" class="">Forgot password?</a>
                 </div> -->
+<!-- </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="wrapper">
+    <div class="container">
+        <app-alert></app-alert>
+    </div>
+    <div class="filter"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6 mr-auto ml-auto h-100">
+                <section class="form-elegant align-middle">
+
+                    <!--Form without header-->
+                    <div class="card">
+
+                        <div class="card-body mx-4">
+                            <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user" class="register-form">
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 class="dark-grey-text mb-5">
+                                        <strong>Sign in</strong>
+                                    </h3>
+                                </div>
+
+                                <div class="md-form">
+                                    
+                                    <input type="text" class="form-control" formControlName="email">
+                                    <label>Email</label>
+
+                                    <div class="error" *ngIf="user.get('email').touched && user.get('email').hasError('required')">
+                                        Email is required
+                                    </div>
+                                    <div class="error" *ngIf="user.get('email').touched && user.get('email').hasError('pattern')">
+                                        Enter valid email
+                                    </div>
+                                </div>
+                                <div class="md-form pb-3">
+                                   
+                                    <input type="password" class="form-control" formControlName="password">
+                                    <label>Password</label>
+                                    <div class="error" *ngIf="user.get('password').touched && user.get('password').hasError('required')">
+                                        Password is required
+                                    </div>
+                                    <div class="error" *ngIf="user.get('password').touched && user.get('password').hasError('minlength')">
+                                        Minimum of 2 characters
+                                    </div>
+
+                                    <p class="font-small blue-text d-flex justify-content-end">Forgot
+                                            <a href="#" class="blue-text ml-1"> Password?</a>
+                                    </p>
+                                </div>
+
+                                <div class="text-center mb-3">
+                                    <button type="submit" class="btn blue-gradient btn-block submit-button z-depth-1a" [disabled]="user.invalid">
+                                        <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Sign in
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer mx-5 pt-3 mb-1">
+                            <p class="font-small grey-text d-flex justify-content-end">Not a member?
+                                <a href="#" class="blue-text ml-1"> Sign Up</a>
+                            </p>
+                        </div>
+
+                    </div>
+                    <!--/Form without header-->
+
+                </section>
+
             </div>
         </div>
     </div>
