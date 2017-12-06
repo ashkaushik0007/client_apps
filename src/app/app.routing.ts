@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/index';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
+import { SelfregisterComponent } from './selfregister/selfregister.component';
 
 // ,canActivate: [AuthGuard],
 const routes: Routes =[
@@ -21,8 +22,9 @@ const routes: Routes =[
         { path: 'addcompany', component:AddcompanyComponent, outlet:'page'},
         { path: 'companies', component:ManagecompanyComponent, outlet:'page'}
       ],canActivate: [AuthGuard]},
-    { path: 'login',            component: LoginComponent },
-    { path: 'signup',           component: SignupComponent },
+    { path: 'login',  component: LoginComponent },
+    { path: 'addcompanyowner',  component: SignupComponent },
+    { path: 'signup', component: SelfregisterComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
 ];

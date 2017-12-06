@@ -28,6 +28,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ManagecompanyComponent } from './dashboard/managecompany/managecompany.component';
 import { AddcompanyComponent } from './dashboard/managecompany/addcompany/addcompany.component';
 import { CompanyService } from 'app/services/company/company.service';
+import { SelfregisterComponent } from './selfregister/selfregister.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CompanyService } from 'app/services/company/company.service';
     ManageuserComponent,
     AddsuperuserComponent,
     ManagecompanyComponent,
-    AddcompanyComponent
+    AddcompanyComponent,
+    SelfregisterComponent
   ],
   imports: [
     BrowserModule,

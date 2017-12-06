@@ -1,0 +1,94 @@
+<div class="wrapper">
+  <div class="container">
+      <app-alert></app-alert>
+  </div>
+  <div class="filter"></div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-5 col-sm-6 mr-auto ml-auto h-100">
+              <section class="form-elegant align-middle">
+
+                  <!--Form without header-->
+                  <div class="card">
+
+                      <div class="card-body mx-4">
+                          <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user" class="register-form">
+                              <!--Header-->
+                              <div class="text-center">
+                                  <h3 class="dark-grey-text mb-5">
+                                      <strong>Sign up</strong>
+                                  </h3>
+                              </div>
+
+                              <div class="md-form"> 
+
+                                <input type="text" class="form-control" formControlName="name">                                 
+                                <label>Name</label>                               
+                    
+                                <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
+                                  Name is required
+                                </div>
+                                <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
+                                  Minimum of 3 characters
+                                </div>
+                              </div>
+                              <div class="md-form">
+                                 
+                                  <label>Last Name</label>
+                                  <input type="text" class="form-control" formControlName="surname">
+                      
+                                  <div class="error" *ngIf="user.get('surname').touched && user.get('surname').hasError('required')">
+                                    Last Name is required
+                                  </div>
+                                  <div class="error" *ngIf="user.get('surname').touched && user.get('surname').hasError('minlength')">
+                                    Minimum of 3 characters
+                                  </div>
+
+                              </div>
+
+                              <div class="md-form">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" formControlName="email">
+                    
+                                <div class="error" *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+                                  Email is required
+                                </div>
+                    
+                                <div class="error" *ngIf="user.get('email').touched && user.get('email').hasError('pattern')">
+                                  Enter valid email
+                                </div>
+                              </div>
+                             
+                              <div class="md-form">
+                              <label>Phone</label>
+                              <input type="text" class="form-control" formControlName="phone">
+                  
+                              <div class="error" *ngIf="user.get('phone').hasError('required') && user.get('phone').touched">
+                                Phone is required
+                              </div>
+                            </div>
+
+                              <div class="text-center mb-3">
+                                  <button type="submit" class="btn blue-gradient btn-block submit-button z-depth-1a waves-effect waves-light" [disabled]="user.invalid">
+                                      <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Sign up
+                                  </button>
+                              </div>
+                          </form>
+                      </div>
+
+                      <!--Footer-->
+                      <div class="modal-footer mx-5 pt-3 mb-1">
+                          <p class="font-small grey-text d-flex justify-content-end">Aleardy a member?
+                              <a [routerLink]="['/login']" class="blue-text ml-1"> Sign in</a>
+                          </p>
+                      </div>
+
+                  </div>
+                  <!--/Form without header-->
+
+              </section>
+
+          </div>
+      </div>
+  </div>
+</div>
