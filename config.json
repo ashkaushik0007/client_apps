@@ -1,5 +1,5 @@
 {
-    "connectionString": "mongodb://ashkaushik:Ashk0007@104.198.53.159:80/proapps",
-    "apiUrl": "http://104.198.53.159:8080",
+    "connectionString": "mongodb://ashkaushik:Ashk0007@34.242.164.212:27017/backendapi",
+    "apiUrl": "http://34.242.164.212:8080",
     "secret": "Aashish_kaushik"
 }

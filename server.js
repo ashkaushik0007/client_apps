@@ -10,6 +10,7 @@ cors = require('cors');
 const api = require('./server/routes/api');
 const user = require('./server/routes/user/user');
 const company = require('./server/routes/company/company');
+const tiktok = require('./server/routes/tiktok/tiktok');
 
 const app = express();
 
@@ -24,12 +25,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
 app.use('/api/user', user);
 app.use('/api/company', company);
+app.use('/api/tiktok', tiktok);
 
 // Catch all other routes and return the index file
 app.get('/*', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With,     Content-Type");
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
