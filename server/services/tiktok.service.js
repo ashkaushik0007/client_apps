@@ -67,9 +67,9 @@ function get(Param) {
             
                         var finaljson = {
                             "DownloadURL" : finalurl,
-                            "thumbnailURL" : thumbnail,
+                            "ThumbnailURL" : thumbnail,
                             "Title" :title,
-                            "mediaDesc":mediaDesc
+                            "MediaDesc":mediaDesc
                         }
     
                         deferred.resolve(finaljson);
