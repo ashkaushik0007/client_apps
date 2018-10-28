@@ -9,6 +9,9 @@ router.post('/getfeed', tiktokfeed);
 module.exports = router;
 
 function tiktokfeed(req, res) {
+
+    console.log(req.body);
+    
     tiktokService.get(req.body)
         .then(function (feed) {
             res.status(200).send(feed);
