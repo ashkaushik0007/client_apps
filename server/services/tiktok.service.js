@@ -30,8 +30,27 @@ function get(Param) {
         if(reqURL != ''){
             request(reqURL, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-
                     try{
+
+                        var title = body.split('<title>');
+
+                        if(typeof title[1] != 'undefined'){
+                            title = title[1].split('</title>'); 
+                            title = title[0];
+                        }
+
+                        var thumbnail = body.split('<meta property="og:image" content="');
+                        if(typeof thumbnail[1] != 'undefined'){
+                            thumbnail = thumbnail[1].split('">'); 
+                            thumbnail = thumbnail[0];
+                        }
+
+                        var mediaDesc = body.split('<p id="caption">');
+                        if(typeof mediaDesc[1] != 'undefined'){
+                            mediaDesc = mediaDesc[1].split('</p>'); 
+                            mediaDesc = mediaDesc[0];
+                        }
+
                         var content = body.split('"download_addr":{');
                         content = content[1].split('}');
                         content = content[0].split('",');
@@ -43,28 +62,31 @@ function get(Param) {
                             finalurl = finalurl.replace(/\\/g,'');
                         }else{
                             // Invalid URL
-                            deferred.reject('Please use valid URL');  
+                            deferred.reject('Please use valid tiktok video URL');  
                         }
             
                         var finaljson = {
-                            "DownloadURL" : finalurl
+                            "DownloadURL" : finalurl,
+                            "thumbnailURL" : thumbnail,
+                            "Title" :title,
+                            "mediaDesc":mediaDesc
                         }
     
                         deferred.resolve(finaljson);
                     }catch(error) {
                         // Run time error
-                        deferred.reject('Something went wrong, please contact developer'); 
+                        deferred.reject('Please use valid tiktok video URL'); 
                     }
                 }else{
                    //Error Logging
                    console.log(error);    
                    // Invalid URL
-                   deferred.reject('Please use valid URL'); 
+                   deferred.reject('Please use valid tiktok video URL'); 
                 }
             })
         }else{
             // Invalid URL
-            deferred.reject('Given URL is not valid');
+            deferred.reject('Please use valid tiktok video URL');
         }
     }
     
