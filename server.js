@@ -7,7 +7,6 @@ expressJwt = require('express-jwt'),
 cors = require('cors');
 
 // Get our API routes
-const api = require('./server/routes/api');
 const user = require('./server/routes/user/user');
 const company = require('./server/routes/company/company');
 const AllVideo = require('./server/routes/AllVideo/AllVideo');
@@ -22,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Set our api routes
-app.use('/api', api);
 app.use('/api/user', user);
 app.use('/api/company', company);
 app.use('/api/AllVideo', AllVideo);
