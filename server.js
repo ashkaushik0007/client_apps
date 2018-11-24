@@ -10,7 +10,7 @@ cors = require('cors');
 const api = require('./server/routes/api');
 const user = require('./server/routes/user/user');
 const company = require('./server/routes/company/company');
-const tiktok = require('./server/routes/tiktok/tiktok');
+const AllVideo = require('./server/routes/AllVideo/AllVideo');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
 app.use('/api/user', user);
 app.use('/api/company', company);
-app.use('/api/tiktok', tiktok);
+app.use('/api/AllVideo', AllVideo);
 
 // Catch all other routes and return the index file
 app.get('/*', (req, res) => {
