@@ -1,5 +1,5 @@
 {
     "connectionString": "mongodb://backendAPIUser:AKkTZEfjs4H@13.233.172.179:27017/backendapi",
-    "apiUrl": "http://13.233.172.179",
+    "apiUrl": "http://13.233.172.179:8080",
     "secret": "S6dvL0vEDr1t0sffUGatXWO5BaiWRRXR"
 }
