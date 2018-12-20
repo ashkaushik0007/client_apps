@@ -1,4 +1,3 @@
-var config = require('./../../../config.json');
 var express = require('express');
 var router = express.Router();
 var userService = require('./../../services/user.service');
@@ -10,7 +9,6 @@ router.get('/getAllUsers', getAll);
 router.get('/current', getCurrent);
 router.put('/update', update);
 router.delete('/:_id', _delete);
-router.post('/verify',verifyUser);
  
 module.exports = router;
 
@@ -40,17 +38,6 @@ function register(req, res) {
         });
 }
  
- 
-function verifyUser(req, res) {
-    userService.verify(req.body)
-        .then(function () {
-            res.status(200).send(req.body);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
-
 function getAll(req, res) {
     userService.getAll()
         .then(function (users) {

@@ -8,8 +8,7 @@ cors = require('cors');
 
 // Get our API routes
 const user = require('./server/routes/user/user');
-const company = require('./server/routes/company/company');
-const AllVideo = require('./server/routes/AllVideo/AllVideo');
+const doc = require('./server/routes/document/document');
 
 const app = express();
 
@@ -20,10 +19,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.use(function(req, res, next) {
+  // Website you wish to allow to connect
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+  // Request methods you wish to allow
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.header('Access-Control-Allow-Headers', 'Origin,Content-Type,Accept,Authorization');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 // Set our api routes
 app.use('/api/user', user);
-app.use('/api/company', company);
-app.use('/api/AllVideo', AllVideo);
+app.use('/api/doc', doc);
 
 // Catch all other routes and return the index file
 app.get('/*', (req, res) => {
@@ -34,7 +48,7 @@ app.get('/*', (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '8080';
+const port = process.env.PORT || '8282';
 app.set('port', port);
 
 /**

@@ -1,0 +1,68 @@
+<div class="page home-page">
+    <!-- Main Navbar-->
+    <app-header></app-header>
+
+    <div class="page-content d-flex align-items-stretch">
+
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <app-sidebar></app-sidebar>
+        </nav>
+
+        <div class="content-inner" style="min-height:800px">
+            <div class="container">
+                <app-alert></app-alert>
+            </div>
+
+            <div class="statistic d-flex justify-content-around proapp-padding">
+                <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+                    <div class="icon bg-green">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <small>Add New</small>
+                        <br>
+                        <strong>Document</strong>
+                    </div>
+                </div>
+                <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+                    <div class="icon bg-orange">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <small>Edit</small>
+                        <br>
+                        <strong>Document</strong>
+                    </div>
+                </div>
+                <div class="statistic d-flex align-items-center bg-white has-shadow col-lg-3">
+                    <div class="icon bg-red">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </div>
+                    <div class="text">
+                        <small>Delete</small>
+                        <br>
+                        <strong>Document</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!loading">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+            <div class="mx-auto proapp-padding" *ngIf="loading">
+                <div class="form-group pull-right proapp-padding">
+                    <a [routerLink]="['/add-document']" class="btn btn-primary btn-block btn-round">Add
+                        New Document</a>
+                </div>
+                <div class="bg-white proapp-table-border table-responsive">
+                    <ng2-smart-table class='form-control' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+                        (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

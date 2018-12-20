@@ -24,15 +24,14 @@ export class SelfregisterComponent implements OnInit {
 
     ngOnInit() {
       this.user = new FormGroup({
-        name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        surname: new FormControl('', [Validators.required, Validators.minLength(3)]),        
+        name: new FormControl('', [Validators.required, Validators.minLength(3)]),      
         email: new FormControl('', [
             Validators.required,
             Validators.pattern("[^ @]*@[^ @]*")
           ]),
         phone: new FormControl('',Validators.required),
-        role: new FormControl('owner'),     
-        password: new FormControl('Admin@123'),
+        role: new FormControl('Document Owner'), 
+        password: new FormControl(''),
         created: new FormControl(Date.now()),
         updated: new FormControl(Date.now())
       });

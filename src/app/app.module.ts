@@ -8,43 +8,32 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
 
 import { AppConfig } from './app.config';
 
 import {APP_BASE_HREF} from '@angular/common';
 
 import { AuthGuard } from './guards/index';
-import { AlertService, AuthenticationService, UserService} from './services/index';
+import { AlertService, AuthenticationService, UserService, DocumentService} from './services/index';
 import { AlertComponent } from './directives/index';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './dashboard/home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarComponent } from './dashboard/shared/sidebar/sidebar.component';
-import { NavComponent } from './dashboard/shared/nav/nav.component';
-import { ManageuserComponent } from './dashboard/manageuser/manageuser.component';
-import { AddsuperuserComponent } from './dashboard/manageuser/addsuperuser/addsuperuser.component';
+import { ManagedocumentComponent, AddDocumentComponent } from './managedocument/index';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { ManagecompanyComponent } from './dashboard/managecompany/managecompany.component';
-import { AddcompanyComponent } from './dashboard/managecompany/addcompany/addcompany.component';
-import { CompanyService } from 'app/services/company/company.service';
 import { SelfregisterComponent } from './selfregister/selfregister.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
     LoginComponent,
     AlertComponent,
-    HomeComponent,
-    DashboardComponent,
+    SelfregisterComponent,
+    HeaderComponent,
     SidebarComponent,
-    NavComponent,
-    ManageuserComponent,
-    AddsuperuserComponent,
-    ManagecompanyComponent,
-    AddcompanyComponent,
-    SelfregisterComponent
+    ManagedocumentComponent,
+    AddDocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -54,14 +43,15 @@ import { SelfregisterComponent } from './selfregister/selfregister.component';
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,    
+    NgDatepickerModule
   ],
   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
-    CompanyService,
+    DocumentService,
     AppConfig,
     {provide: APP_BASE_HREF, useValue : '/'} 
   ],

@@ -5,7 +5,6 @@ import { Router, ActivatedRoute} from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
  
 import { AlertService,  AuthenticationService} from '../services/index';
-import { UserService } from '../services/index';
 import { User } from '../models/index';
  
 @Component({

@@ -3,30 +3,18 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent, ManageuserComponent,AddsuperuserComponent,AddcompanyComponent,ManagecompanyComponent } from './dashboard/index';
-import { DashboardComponent } from './dashboard/index';
-import { SignupComponent } from './signup/signup.component';
+import { ManagedocumentComponent, AddDocumentComponent } from './managedocument/index';
 import { AuthGuard } from './guards/index';
 import { LoginComponent } from './login/login.component';
 import { SelfregisterComponent } from './selfregister/selfregister.component';
 
 // ,canActivate: [AuthGuard],
 const routes: Routes =[
-    { path: 'dashboard',        component: DashboardComponent,
-      children: [
-        { path: '', component: HomeComponent, outlet: 'page'},
-        { path: 'profile', component: SignupComponent, outlet: 'page'},
-        { path: 'signup', component: SignupComponent, outlet: 'page'},
-        { path: 'manageuser', component:ManageuserComponent, outlet:'page'},        
-        { path: 'addsuperuser', component:AddsuperuserComponent, outlet:'page'},
-        { path: 'addcompany', component:AddcompanyComponent, outlet:'page'},
-        { path: 'companies', component:ManagecompanyComponent, outlet:'page'}
-      ],canActivate: [AuthGuard]},
+    { path: 'dashboard', component: ManagedocumentComponent,canActivate: [AuthGuard]},
     { path: 'login',  component: LoginComponent },
-    { path: 'addcompanyowner',  component: SignupComponent },
     { path: 'signup', component: SelfregisterComponent },
+    { path: 'add-document', component: AddDocumentComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-
 ];
 
 @NgModule({
