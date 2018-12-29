@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { User, Expenses } from './../models/index';
 import { ExpensesService } from './../services/index';
-import { TableDatepickerComponent,  } from '.././shared/index';
 
 @Component({
   selector: 'app-expenses',
