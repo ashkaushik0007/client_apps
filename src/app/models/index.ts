@@ -1,2 +1,4 @@
 export * from './user';
-export * from './document';
+export * from './purchase';
+export * from './sales';
+export * from './expenses';

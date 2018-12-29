@@ -8,7 +8,10 @@ cors = require('cors');
 
 // Get our API routes
 const user = require('./server/routes/user/user');
-const doc = require('./server/routes/document/document');
+const reports = require('./server/routes/reports/reports');
+const purchase = require('./server/routes/purchase/purchase');
+const sales = require('./server/routes/sales/sales');
+const expenses = require('./server/routes/expenses/expenses')
 
 const app = express();
 
@@ -37,7 +40,10 @@ app.use(function(req, res, next) {
 
 // Set our api routes
 app.use('/api/user', user);
-app.use('/api/doc', doc);
+app.use('/api/reports', reports);
+app.use('/api/purchase',purchase);
+app.use('/api/sale',sales);
+app.use('/api/expense',expenses);
 
 // Catch all other routes and return the index file
 app.get('/*', (req, res) => {

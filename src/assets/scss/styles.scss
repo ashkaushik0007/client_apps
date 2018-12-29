@@ -1,7 +1,20 @@
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
 .register-form .error{
     color: #ec4c4c;
     padding: 4px;
 }
+
+.wrap-form{
+    min-height:800px;
+    padding: 40px
+}
+
+.header-bottom-space{
+    margin-bottom: 40px;
+}
+
 
 .ng2-smart-action-add-add{
     display: none !important;
@@ -41,15 +54,13 @@ table-cell-view-mode {
 }
 
 .proapp-table-border{
-    padding: 40px !important;
-    min-height: 450px;
-    border-radius:0 40px 0 40px !important;
+    padding: 15px !important;
+    min-height: 400px;    
 }
 
 .spinner {
     width: 40px;
-    height: 40px;
-  
+    height: 40px;  
     position: relative;
     margin: 100px auto;
   }

@@ -1,0 +1,200 @@
+<div class="page home-page">
+    <!-- Main Navbar-->
+    <app-header></app-header>
+
+    <div class="page-content d-flex align-items-stretch">
+
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <app-sidebar></app-sidebar>
+        </nav>
+
+        <div class="content-inner wrap-form">
+            
+            <!-- Page Header-->
+            <header class="page-header header-bottom-space">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">Add Expense Details</h2>
+                </div>
+            </header>
+
+            <div class="container">
+                <app-alert></app-alert>
+            </div>
+
+            <!-- Expense Add Form-->
+            <div class="col-lg-6 mx-auto">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <h3 class="h4">Add New Expense</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>This form is used to add new expense</p>
+
+                        <form novalidate (ngSubmit)="onSubmit(expensesForm)" [formGroup]="expensesForm" class="expenses-add-form">
+                        
+                            <div class="form-group">
+                                <label>Date</label>
+
+                                <ng-datepicker [options]="options" formControlName="date">
+                                </ng-datepicker>
+                                
+                                <div class="error" *ngIf="expensesForm.get('date').hasError('required') && expensesForm.get('date').touched">
+                                    Date is required
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cleaning Expense</label>
+                                <input type="text" class="form-control" formControlName="cleaning">
+
+                                <div class="error" *ngIf="expensesForm.get('cleaning').touched && expensesForm.get('cleaning').hasError('required')">
+                                    Cleaning Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('cleaning').touched && expensesForm.get('cleaning').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Coffee Expense</label>
+                                <input type="text" class="form-control" formControlName="coffee">
+
+                                <div class="error" *ngIf="expensesForm.get('coffee').touched && expensesForm.get('coffee').hasError('required')">
+                                    Coffee Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('coffee').touched && expensesForm.get('coffee').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Belending Expense</label>
+                                <input type="text" class="form-control" formControlName="belending">
+
+                                <div class="error" *ngIf="expensesForm.get('belending').touched && expensesForm.get('belending').hasError('required')">
+                                    Belending Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('belending').touched && expensesForm.get('belending').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Loading Unloading</label>
+                                <input type="text" class="form-control" formControlName="loadingUnloading">
+
+                                <div class="error" *ngIf="expensesForm.get('loadingUnloading').touched && expensesForm.get('loadingUnloading').hasError('required')">
+                                    Loading Unloading Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('loadingUnloading').touched && expensesForm.get('loadingUnloading').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Packing Tailoring</label>
+                                <input type="text" class="form-control" formControlName="packingTailoring">
+
+                                <div class="error" *ngIf="expensesForm.get('packingTailoring').touched && expensesForm.get('packingTailoring').hasError('required')">
+                                    Packing Tailoring Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('packingTailoring').touched && expensesForm.get('packingTailoring').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Plastic Gunny</label>
+                                <input type="text" class="form-control" formControlName="plasticGunny">
+
+                                <div class="error" *ngIf="expensesForm.get('plasticGunny').touched && expensesForm.get('plasticGunny').hasError('required')">
+                                    Plastic Gunny Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('plasticGunny').touched && expensesForm.get('plasticGunny').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>E.B Bill</label>
+                                <input type="text" class="form-control" formControlName="ebBill">
+
+                                <div class="error" *ngIf="expensesForm.get('ebBill').touched && expensesForm.get('ebBill').hasError('required')">
+                                    E.B Bill Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('ebBill').touched && expensesForm.get('ebBill').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Salary Expense</label>
+                                <input type="text" class="form-control" formControlName="salaryExpense">
+
+                                <div class="error" *ngIf="expensesForm.get('salaryExpense').touched && expensesForm.get('salaryExpense').hasError('required')">
+                                    Salary Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('salaryExpense').touched && expensesForm.get('salaryExpense').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>House Rent Expense</label>
+                                <input type="text" class="form-control" formControlName="houseRentExpense">
+
+                                <div class="error" *ngIf="expensesForm.get('houseRentExpense').touched && expensesForm.get('houseRentExpense').hasError('required')">
+                                    House Rent Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('houseRentExpense').touched && expensesForm.get('houseRentExpense').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Money Transfer Expense</label>
+                                <input type="text" class="form-control" formControlName="moneyTransferExpense">
+
+                                <div class="error" *ngIf="expensesForm.get('moneyTransferExpense').touched && expensesForm.get('moneyTransferExpense').hasError('required')">
+                                    Money Transfer Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('moneyTransferExpense').touched && expensesForm.get('moneyTransferExpense').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Other Expense Expense</label>
+                                <input type="text" class="form-control" formControlName="otherExpense">
+
+                                <div class="error" *ngIf="expensesForm.get('otherExpense').touched && expensesForm.get('otherExpense').hasError('required')">
+                                    Other Expense Expense is required
+                                </div>
+
+                                <div class="error" *ngIf="expensesForm.get('otherExpense').touched && expensesForm.get('otherExpense').hasError('pattern')">
+                                    Enter valid decimal number upto 2 decimal point. Eg: 12.22
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block btn-round" [disabled]="expensesForm.invalid"><i
+                                        *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i>Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

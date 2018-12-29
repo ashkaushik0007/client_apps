@@ -28,8 +28,7 @@ export class UserService {
         return this.http.delete(this.config.apiUrl + '/user/' + _id, this.jwt());
     }
  
-    // private helper methods
- 
+    // private helper methods 
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

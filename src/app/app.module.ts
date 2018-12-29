@@ -14,26 +14,37 @@ import { AppConfig } from './app.config';
 import {APP_BASE_HREF} from '@angular/common';
 
 import { AuthGuard } from './guards/index';
-import { AlertService, AuthenticationService, UserService, DocumentService} from './services/index';
+import { AlertService, AuthenticationService, UserService, DocumentService, PurchaseService, SalesService, ExpensesService, ReportsService} from './services/index';
 import { AlertComponent } from './directives/index';
 import { LoginComponent } from './login/login.component';
-import { ManagedocumentComponent, AddDocumentComponent } from './managedocument/index';
+import { HomeComponent } from './home/index';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { SelfregisterComponent } from './selfregister/selfregister.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { HeaderComponent, SidebarComponent, TableDatepickerComponent, TableDatepickerRenderComponent } from './shared/index';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { AddPurchaseComponent, PurchaseComponent } from './purchase/index';
+import { SalesComponent,AddSaleComponent } from './sales/index';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { AddExpenseComponent } from './expenses/add-expense/add-expense.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent, 
     AlertComponent,
     SelfregisterComponent,
     HeaderComponent,
     SidebarComponent,
-    ManagedocumentComponent,
-    AddDocumentComponent
+    PurchaseComponent,
+    AddPurchaseComponent,
+    SalesComponent,
+    AddSaleComponent,
+    ExpensesComponent,
+    AddExpenseComponent,
+    TableDatepickerComponent,
+    TableDatepickerRenderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,18 +55,24 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     RouterModule,
     AppRoutingModule,
     Ng2SmartTableModule,    
-    NgDatepickerModule
-  ],
+    NgDatepickerModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
+  ], 
   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
     DocumentService,
+    PurchaseService,
+    SalesService,
+    ExpensesService,
+    ReportsService,
     AppConfig,
     {provide: APP_BASE_HREF, useValue : '/'} 
-  ],
-  
-  bootstrap: [AppComponent]
+  ],  
+  bootstrap: [AppComponent],
+  entryComponents: [TableDatepickerRenderComponent, TableDatepickerComponent]
 })
 export class AppModule { }

@@ -30,7 +30,7 @@ export class SelfregisterComponent implements OnInit {
             Validators.pattern("[^ @]*@[^ @]*")
           ]),
         phone: new FormControl('',Validators.required),
-        role: new FormControl('Document Owner'), 
+        role: new FormControl('Admin'), 
         password: new FormControl(''),
         created: new FormControl(Date.now()),
         updated: new FormControl(Date.now())
