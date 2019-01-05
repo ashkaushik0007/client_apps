@@ -29,7 +29,15 @@ function get(Param) {
 
     function requestHTTP(reqURL){
         if(reqURL != ''){
-            request(reqURL, function (error, response, body) {
+
+            var options = {
+                url: reqURL,
+                headers: {
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
+                }
+            };
+
+            request(options, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     try{  
 
@@ -53,9 +61,7 @@ function get(Param) {
                         // Run time error
                         deferred.reject('Something went wrong, please try again later'); 
                     }
-                }else{
-                   //Error Logging
-                   console.log(error);    
+                }else{   
                    // Invalid URL
                    deferred.reject('Please use valid tiktok | VIGO | LIKE video URL'); 
                 }
@@ -116,8 +122,7 @@ function get(Param) {
 
         if(finalurl.indexOf('http') > -1){                        
             finalurl = finalurl.replace(/u0026/g, "&");
-            finalurl = finalurl.replace(/\\/g,'');
-            
+            finalurl = finalurl.replace(/\\/g,'');            
         }else{
             // Invalid URL
             deferred.reject('Please use valid tiktok | VIGO | LIKE video URL');  

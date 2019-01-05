@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
@@ -64,8 +64,7 @@ import { SelfregisterComponent } from './selfregister/selfregister.component';
     CompanyService,
     AppConfig,
     {provide: APP_BASE_HREF, useValue : '/'} 
-  ],
-  
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
