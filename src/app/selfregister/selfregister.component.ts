@@ -37,8 +37,8 @@ export class SelfregisterComponent implements OnInit {
       });
     }
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
-     if(valid){
-        this.loading = true;
+        if(valid){
+            this.loading = true;
             this.userService.create(value)
                 .subscribe(
                 data => {

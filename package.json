@@ -17,7 +17,7 @@
     "server": "node server.js"
   },
   "private": true,
-  "dependencies": {
+  "dependencies": { 
     "@angular-generic-table/core": "^4.8.0",
     "@angular/animations": "6.1.10",
     "@angular/cdk": "^7.2.0",
