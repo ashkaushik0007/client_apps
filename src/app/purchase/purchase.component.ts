@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User, Purchase} from './../models/index';
@@ -33,8 +34,14 @@ export class PurchaseComponent implements OnInit {
         title: 'Company Name'
       },
       date: {
-        title: 'Date',      
-        editable: false,
+        title: 'Date', 
+        valuePrepareFunction: (date) => {
+          return new DatePipe('en-US').transform(date, 'dd/MM/yyyy');
+        },     
+        editable: false
+      },
+      invoiceNo:{
+        title : 'Invoice Number'
       },
       qty: {
         title: 'Quantity'

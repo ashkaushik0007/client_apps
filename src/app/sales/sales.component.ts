@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { User, Sales } from './../models/index';
 import { SalesService } from './../services/index';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sales',
@@ -34,7 +35,13 @@ export class SalesComponent implements OnInit {
       },
       date: {
         title: 'Date',
+        valuePrepareFunction: (date) => {
+          return new DatePipe('en-US').transform(date, 'dd/MM/yyyy');
+        },
         editable: false,
+      },
+      billNo:{
+        title : 'Bill Number'
       },
       qty: {
         title: 'Quantity'

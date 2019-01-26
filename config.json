@@ -1,4 +1,4 @@
 {
-    "connectionString": "mongodb://backendAPIUser:AKkTZEfjs4H@35.154.179.28:27017/backendapi",
+    "connectionString": "mongodb://MongoApiServiceUser:AKkTZEfjs4H@34.73.76.89:27017/sonalitrader",
     "secret": "S6dvL0vEDr1t0sffUGatXWO5BaiWRRXR"
 }

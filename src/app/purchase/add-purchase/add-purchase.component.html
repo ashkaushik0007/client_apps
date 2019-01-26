@@ -74,6 +74,19 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Invoice Number</label>
+                                    <input type="text" class="form-control" formControlName="invoiceNo">
+    
+                                    <div class="error" *ngIf="purchaseForm.get('invoiceNo').hasError('required') && purchaseForm.get('invoiceNo').touched">
+                                        Invoice Number is required
+                                    </div>  
+                                    
+                                    <div class="error" *ngIf="purchaseForm.get('invoiceNo').touched && purchaseForm.get('invoiceNo').hasError('pattern')">
+                                        Enter valid Invoice Number
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Quantity</label>
                                     <input type="text" class="form-control" formControlName="qty">
     

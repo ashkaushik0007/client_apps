@@ -20,8 +20,8 @@ export class AddPurchaseComponent implements OnInit {
   options: DatepickerOptions = {
     minYear: 1900,
     maxYear: 2030,    
-    displayFormat: 'MM/DD/YYYY',
-    barTitleFormat: 'MM/DD/YYYY',
+    displayFormat: 'DD/MM/YYYY',
+    barTitleFormat: 'DD/MM/YYYY',
     dayNamesFormat: 'dd',
     firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
     barTitleIfEmpty: 'Click to select a date',
@@ -44,9 +44,10 @@ export class AddPurchaseComponent implements OnInit {
       auctionName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       companyName: new FormControl('', [Validators.required, Validators.minLength(3)]),     
       date: new FormControl(''),
-      qty: new FormControl('1', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-      costAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
-      dueAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]),
+      invoiceNo: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+      qty: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
+      costAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
+      dueAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
       owner: new FormControl(this.currentUser._id),
       created: new FormControl(Date.now()),
       updated: new FormControl(Date.now())

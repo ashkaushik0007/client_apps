@@ -5,6 +5,7 @@ export interface Sales {
   auctionName: string;
   dealerName: string;
   date: string;
+  billNo: number;
   qty: number;  
   recievedAmount: number;
   dueAmount: number;

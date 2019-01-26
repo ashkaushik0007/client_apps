@@ -73,6 +73,19 @@
                               </div>
 
                               <div class="form-group">
+                                <label>Bill Number</label>
+                                <input type="text" class="form-control" formControlName="billNo">
+
+                                <div class="error" *ngIf="salesForm.get('billNo').hasError('required') && salesForm.get('billNo').touched">
+                                    Bill Number is required
+                                </div>  
+                                
+                                <div class="error" *ngIf="salesForm.get('billNo').touched && salesForm.get('billNo').hasError('pattern')">
+                                    Enter valid bill number
+                                </div>
+                               </div>
+
+                              <div class="form-group">
                                   <label>Quantity</label>
                                   <input type="text" class="form-control" formControlName="qty">
   

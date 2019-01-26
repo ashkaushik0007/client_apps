@@ -20,8 +20,8 @@ export class AddExpenseComponent implements OnInit {
   options: DatepickerOptions = {
     minYear: 1900,
     maxYear: 2030,    
-    displayFormat: 'MM/DD/YYYY',
-    barTitleFormat: 'MM/DD/YYYY',
+    displayFormat: 'DD/MM/YYYY',
+    barTitleFormat: 'DD/MM/YYYY',
     dayNamesFormat: 'dd',
     firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
     barTitleIfEmpty: 'Click to select a date',

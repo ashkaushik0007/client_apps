@@ -5,6 +5,7 @@ export interface Purchase {
   auctionName: string;
   companyName: string;
   date: string;
+  invoiceNo:number;
   qty: number;  
   costAmount: DecimalPipe;
   dueAmount: DecimalPipe;

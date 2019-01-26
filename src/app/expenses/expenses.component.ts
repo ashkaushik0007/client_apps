@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { User, Expenses } from './../models/index';
 import { ExpensesService } from './../services/index';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-expenses',
@@ -27,7 +28,10 @@ export class ExpensesComponent implements OnInit {
     },
     columns: {
       date: {
-        title: 'Date',
+        title: 'Date', 
+        valuePrepareFunction: (date) => {
+          return new DatePipe('en-US').transform(date, 'dd/MM/yyyy');
+        },     
         editable: false,
       },
       cleaning: {
