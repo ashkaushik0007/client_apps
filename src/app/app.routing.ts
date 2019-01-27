@@ -19,7 +19,7 @@ const routes: Routes =[
     { path: 'add-sales',component: AddSaleComponent, canActivate: [AuthGuard]}, 
     { path: 'manage-expenses',component: ExpensesComponent, canActivate: [AuthGuard]},  
     { path: 'add-expenses',component: AddExpenseComponent, canActivate: [AuthGuard]}, 
-    { path: 'signup', component: SelfregisterComponent},
+    { path: 'signup', component: SelfregisterComponent,canActivate: [AuthGuard]},
     { path: 'login',  component: LoginComponent},
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
