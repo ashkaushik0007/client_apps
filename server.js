@@ -4,7 +4,9 @@ http = require('http'),
 path = require('path'),
 bodyParser = require('body-parser'),
 expressJwt = require('express-jwt'),
+compression = require('compression'),
 cors = require('cors');
+
 
 // Get our API routes
 const user = require('./server/routes/user/user');
@@ -15,6 +17,9 @@ const expenses = require('./server/routes/expenses/expenses')
 
 const app = express();
 
+// compress all responses
+app.use(compression())
+
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Origin', 'http://sonalitrader.com');
 
   // Request methods you wish to allow
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
