@@ -47,16 +47,16 @@ export class SalesComponent implements OnInit {
         title: 'Quantity'
       },
       recievedAmount: {
-        title: 'Amount Received'
+        title: 'Received Amount'
       },
+      totalAmount: {
+        title: 'Total Amount'
+      },      
       dueAmount: {
-        title: 'Amount Due'
-      },
-      total: {
-        title: 'Total',
+        title: 'Due Amount',
         valuePrepareFunction: (cell, row) => {
-           var total = Number(row.recievedAmount) + Number(row.dueAmount);
-           return total;
+          var due = Number(row.totalAmount) - Number(row.recievedAmount);
+          return due;
         }
       }
     },

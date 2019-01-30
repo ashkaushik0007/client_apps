@@ -47,7 +47,7 @@ export class AddPurchaseComponent implements OnInit {
       invoiceNo: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
       qty: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
       costAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
-      dueAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
+      totalAmount: new FormControl('', [Validators.required, Validators.pattern(/^\d+(\.\d{1,3})?$/)]),
       owner: new FormControl(this.currentUser._id),
       created: new FormControl(Date.now()),
       updated: new FormControl(Date.now())

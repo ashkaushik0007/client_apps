@@ -8,7 +8,7 @@ export interface Purchase {
   invoiceNo:number;
   qty: number;  
   costAmount: DecimalPipe;
-  dueAmount: DecimalPipe;
+  totalAmount: DecimalPipe;
   owner:string;
   created: Date;
   updated: Date;

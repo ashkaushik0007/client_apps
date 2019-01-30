@@ -51,11 +51,12 @@ function update(_id, saleParam) {
     // fields to update
     var set = {
         auctionName: saleParam.auctionName,
-        dealerName: saleParam.companyName,     
+        dealerName: saleParam.dealerName,     
         date: saleParam.date,
+        billNo: saleParam.billNo,
         qty: saleParam.qty,
-        recievedAmount: saleParam.costAmount,
-        dueAmount: saleParam.dueAmount,
+        recievedAmount: saleParam.recievedAmount,
+        totalAmount: saleParam.totalAmount,
         updated: Date.now()             
     };
 

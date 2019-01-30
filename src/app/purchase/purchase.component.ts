@@ -47,16 +47,16 @@ export class PurchaseComponent implements OnInit {
         title: 'Quantity'
       },
       costAmount: {
-        title: 'Amount Spent'
-      },
+        title: 'Spent Amount'
+      }, 
+      totalAmount: {
+        title: 'Total Amount'
+      },    
       dueAmount: {
-        title: 'Amount Due'
-      },
-      total: {
-        title: 'Total',
+        title: 'Due Amount',
         valuePrepareFunction: (cell, row) => {
-           var total = Number(row.costAmount) + Number(row.dueAmount);
-           return total;
+           var due = Number(row.totalAmount) - Number(row.costAmount);
+           return due;
         }
       }
     },

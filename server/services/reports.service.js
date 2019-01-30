@@ -47,16 +47,6 @@ function getConsolidateReports() {
     return deferred.promise;
 }
 
-function extend(target) {
-  var sources = [].slice.call(arguments, 1);
-  sources.forEach(function (source) {
-      for (var prop in source) {
-          target[prop] = source[prop];
-      }
-  });
-  return target;
-}
-
 function salesReport(){
 
   var deferred = Q.defer(); 
@@ -74,7 +64,7 @@ function salesReport(){
         }, 
         salesTotal: { 
             "$sum": { 
-              "$sum": [ { "$toDouble": "$recievedAmount" }, { "$toDouble": "$dueAmount" }]                
+              "$toDouble": "$totalAmount"              
             }
           }, 
         count:{
@@ -107,7 +97,7 @@ function purchasesReports(){
         }, 
         purchasesTotal: { 
             "$sum": { 
-              "$sum": [ { "$toDouble": "$costAmount" }, { "$toDouble": "$dueAmount" }]                
+              "$toDouble": "$totalAmount"            
             }
           }, 
         count:{
@@ -165,19 +155,4 @@ function expensesReports(){
     }); 
 
   return deferred.promise;
-}
-
-function mergeJson(target) {
-  for (var argi = 1; argi < arguments.length; argi++) {
-      var source = arguments[argi];
-      for (var key in source) {
-          if (!(key in target)) {
-              target[key] = [];
-          }
-          for (var i = 0; i < source[key].length; i++) {
-              target[key].push(source[key][i]);
-          }
-      }
-  }
-  return target;
 }

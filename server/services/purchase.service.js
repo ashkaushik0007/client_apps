@@ -53,9 +53,10 @@ function update(_id, purchaseParam) {
         auctionName: purchaseParam.auctionName,
         companyName: purchaseParam.companyName,     
         date: purchaseParam.date,
+        invoiceNo: purchaseParam.invoiceNo,
         qty: purchaseParam.qty,
         costAmount: purchaseParam.costAmount,
-        dueAmount: purchaseParam.dueAmount,
+        totalAmount: purchaseParam.totalAmount,
         updated: Date.now()             
     };
 

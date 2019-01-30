@@ -8,7 +8,7 @@ export interface Sales {
   billNo: number;
   qty: number;  
   recievedAmount: number;
-  dueAmount: number;
+  totalAmount: number;
   owner:string;
   created: Date;
   updated: Date;

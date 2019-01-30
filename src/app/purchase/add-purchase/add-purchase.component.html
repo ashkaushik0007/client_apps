@@ -114,14 +114,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Due Amount</label>
-                                    <input type="text" class="form-control" formControlName="dueAmount">
+                                    <label>Total Amount</label>
+                                    <input type="text" class="form-control" formControlName="totalAmount">
     
-                                    <div class="error" *ngIf="purchaseForm.get('dueAmount').touched && purchaseForm.get('dueAmount').hasError('required')">
-                                       Due Amount is required
+                                    <div class="error" *ngIf="purchaseForm.get('totalAmount').touched && purchaseForm.get('totalAmount').hasError('required')">
+                                       Total Amount is required
                                     </div>
 
-                                    <div class="error" *ngIf="purchaseForm.get('dueAmount').touched && purchaseForm.get('dueAmount').hasError('pattern')">
+                                    <div class="error" *ngIf="purchaseForm.get('totalAmount').touched && purchaseForm.get('totalAmount').hasError('pattern')">
                                         Enter valid decimal number upto 2 decimal point. Eg: 12.22
                                     </div>
                                 </div>
