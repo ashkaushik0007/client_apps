@@ -1,9 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Router, ActivatedRoute } from '@angular/router';
-import { User, Purchase} from './../models/index';
-import { UserService, PurchaseService } from './../services/index';
+import { User, Purchase, Reports } from './../models/index';
+import { PurchaseService, ReportsService } from './../services/index';
 
 @Component({
   selector: 'app-purchase',
@@ -13,8 +12,11 @@ import { UserService, PurchaseService } from './../services/index';
 export class PurchaseComponent implements OnInit {
   public currentUser: User;
   purchase: Purchase[] = [];
+  report: Reports;
   loading = false;
   source: LocalDataSource;
+  qty:DecimalPipe;
+  totaldue: DecimalPipe;
   
   settings = {
     add:{
@@ -62,10 +64,9 @@ export class PurchaseComponent implements OnInit {
     },
   };
   
-  constructor(private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router,
+  constructor(
     private purchaseService:PurchaseService,
+    private reportService:ReportsService,
   ) {
     this.source = new LocalDataSource();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -78,7 +79,12 @@ export class PurchaseComponent implements OnInit {
   }
 
   ngOnInit(){
-    //this.loadAllUsers();
+
+    this.reportService.getpurchaseReports().subscribe(duereport => { 
+      this.report = duereport[0]; 
+      this.qty = this.report.totalQty;
+      this.totaldue = this.report.totalDue;
+    });
   }
 
   onSaveConfirm(event):void {

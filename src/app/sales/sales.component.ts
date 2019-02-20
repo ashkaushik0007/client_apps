@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { User, Sales } from './../models/index';
-import { SalesService } from './../services/index';
-import { DatePipe } from '@angular/common';
+import { User, Sales, Reports } from './../models/index';
+import { SalesService, ReportsService } from './../services/index';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sales',
@@ -14,7 +14,10 @@ export class SalesComponent implements OnInit {
   public currentUser: User;
   sales: Sales[] = [];
   loading = false;
+  report: Reports;
   source: LocalDataSource;
+  qty:DecimalPipe;
+  totaldue: DecimalPipe;
   
   settings = {
     add:{
@@ -64,6 +67,7 @@ export class SalesComponent implements OnInit {
   
   constructor(
     private salesService:SalesService,
+    private reportService:ReportsService,
   ){
     this.source = new LocalDataSource();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));  
@@ -74,6 +78,12 @@ export class SalesComponent implements OnInit {
       this.sales = sales; 
       this.loading = true;        
       this.source.load(sales);   
+    });
+
+    this.reportService.getSalesDuereports().subscribe(duereport => { 
+      this.report = duereport[0]; 
+      this.qty = this.report.totalQty;
+      this.totaldue = this.report.totalDue;
     });
   }
 

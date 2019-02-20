@@ -12,6 +12,14 @@ export class ReportsService  {
       return this.http.get(this.config.apiUrl + '/reports/getConsolidateReports', this.jwt()).map((response: Response) => response.json());
   }
 
+  getSalesDuereports() {
+    return this.http.get(this.config.apiUrl + '/reports/gettotalsalesdue', this.jwt()).map((response: Response) => response.json());
+  }
+
+  getpurchaseReports(){
+    return this.http.get(this.config.apiUrl + '/reports/gettotalpurchasedue', this.jwt()).map((response: Response) => response.json());
+  }
+
   // private helper methods 
   private jwt() {
       // create authorization header with jwt token

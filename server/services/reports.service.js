@@ -11,7 +11,8 @@ db.bind('purchases');
 var service = {};
 
 service.getConsolidateReports = getConsolidateReports;
-service.getTotalSalesDueAmount = totalDueSalesReport; 
+service.getTotalSalesDue = totalDueSales;
+service.getTotalPurchDue = totalDuePurchase;
 
 module.exports = service;
 
@@ -158,19 +159,53 @@ function expensesReports() {
   return deferred.promise;
 }
 
-function totalDueSalesReport() {
+function totalDueSales() {
 
   var deferred = Q.defer();
 
   db.collection('sales').aggregate([
     {
       "$group": {
-        _id: '$totalAmount',
-        totalAmount: '$totalAmount',
-        recievedAmount: '$recievedAmount',
-        salesTotal: {
+        _id: '',
+        totalDue: {
           "$sum": {
-            "$subtract": [{ "$toDouble": "$dueAmount" }, { "$toDouble": "$recievedAmount" }]
+            "$subtract": [{ "$toDouble": "$totalAmount" }, { "$toDouble": "$recievedAmount" }]
+          }
+        },
+        totalQty: {
+          "$sum":  {
+            "$toDouble": "$qty"
+          }
+        },
+        count: {
+          "$sum": 1
+        }
+      }
+    }], function (err, salesReports) {
+      if (err) deferred.reject(err.name + ': ' + err.message);
+
+      deferred.resolve(salesReports);
+    });
+
+  return deferred.promise;
+}
+
+function totalDuePurchase() {
+
+  var deferred = Q.defer();
+
+  db.collection('purchases').aggregate([
+    {
+      "$group": {
+        _id: '',
+        totalDue: {
+          "$sum": {
+            "$subtract": [{ "$toDouble": "$totalAmount" }, { "$toDouble": "$costAmount" }]
+          }
+        },
+        totalQty: {
+          "$sum":  {
+            "$toDouble": "$qty"
           }
         },
         count: {

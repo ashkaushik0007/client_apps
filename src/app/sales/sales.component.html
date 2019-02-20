@@ -1,36 +1,42 @@
 <div class="page home-page">
-  <!-- Main Navbar-->
-  <app-header></app-header>
+    <!-- Main Navbar-->
+    <app-header></app-header>
 
-  <div class="page-content d-flex align-items-stretch">
+    <div class="page-content d-flex align-items-stretch">
 
-      <!-- Side Navbar -->
-      <nav class="side-navbar">
-          <app-sidebar></app-sidebar>
-      </nav>
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <app-sidebar></app-sidebar>
+        </nav>
 
-      <div class="content-inner">
-          <div class="container">
-              <app-alert></app-alert>
-          </div>
-         
-          <div *ngIf="!loading">
-              <div class="spinner">
-                  <div class="double-bounce1"></div>
-                  <div class="double-bounce2"></div>
-              </div>
-          </div>
-                      
-          <div class="mx-auto proapp-padding" *ngIf="loading">
-              <div class="form-group pull-right">
-                  <a [routerLink]="['/add-sales']" class="btn btn-primary btn-block btn-round">Add
-                      Sales</a>
-              </div>
-              <div class="bg-white proapp-table-border table-responsive">
-                  <ng2-smart-table class='form-control' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-                      (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
-              </div>
-          </div>
-      </div>
-  </div>
+        <div class="content-inner">
+            <div class="container">
+                <app-alert></app-alert>
+            </div>
+
+            <div *ngIf="!loading">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+
+            <div class="mx-auto proapp-padding" *ngIf="loading">
+
+                <div class="form-group pull-left">
+                    Total Quantity: {{ qty }} <br>
+                    Total Due: {{ totaldue }}
+                </div>
+                
+                <div class="form-group pull-right">
+                    <a [routerLink]="['/add-sales']" class="btn btn-primary btn-block btn-round">Add
+                        Sales</a>
+                </div>
+                <div class="bg-white proapp-table-border table-responsive">
+                    <ng2-smart-table class='form-control' [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+                        (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
